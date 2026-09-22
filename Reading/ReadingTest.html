@@ -2508,10 +2508,25 @@ function checkAnswer(text){
         answer
     );
 
-    let similarity = chineseSimilarity(
-        cleanText,
-        answer
-    );
+
+    let similarity;
+
+
+    // ⭐ 新增：如果是单字，只要包含这个字就算正确
+    // 例如：题目「五」，读「五个人」也通过
+    if(answer.length === 1 && cleanText.includes(answer)){
+
+        similarity = 1;
+
+    }
+    else{
+
+        similarity = chineseSimilarity(
+            cleanText,
+            answer
+        );
+
+    }
 
     console.log(
         "中文相似度:",
