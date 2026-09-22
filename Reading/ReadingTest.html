@@ -1824,8 +1824,8 @@ const students = {
 const phrases = [
 "五个人",
     "一个人",
-    "两个人",
-    "先走",
+    "从前",
+    "我先",
     "四个人",
     "对了",
     "将来",
@@ -1841,7 +1841,7 @@ const phrases = [
     "能干",
     "被看到",
     "读书",
-    "大风",
+    "风扇",
     "长方体",
     "圆锥体",
     "圆柱体",
@@ -2501,7 +2501,39 @@ function checkAnswer(text){
 
     const cleanText = normalizeChinese(text);
 
-    console.log(
+
+// =======================
+// 棱柱体 / 棱锥体 语音识别修正
+// =======================
+
+const specialFix = {
+
+    "冷柱体":"棱柱体",
+    "人柱体":"棱柱体",
+    "能柱体":"棱柱体",
+
+    "冷锥体":"棱锥体",
+    "人锥体":"棱锥体",
+    "能锥体":"棱锥体"
+
+};
+
+
+let fixedText = cleanText;
+
+for(let wrong in specialFix){
+
+    if(cleanText.includes(wrong)){
+
+        fixedText = specialFix[wrong];
+        break;
+
+    }
+
+}
+
+
+console.log(
         "学生:",
         cleanText,
         "答案:",
@@ -2522,7 +2554,7 @@ function checkAnswer(text){
     else{
 
         similarity = chineseSimilarity(
-            cleanText,
+            fixedText,
             answer
         );
 
