@@ -2544,21 +2544,35 @@ console.log(
     let similarity;
 
 
-    // ⭐ 新增：如果是单字，只要包含这个字就算正确
-    // 例如：题目「五」，读「五个人」也通过
-    if(answer.length === 1 && cleanText.includes(answer)){
+// ⭐ 特别处理：棱柱体 / 棱锥体
+if(answer === "棱柱体" && fixedText.includes("柱体")){
 
-        similarity = 1;
+    similarity = 1;
 
-    }
-    else{
+}
 
-        similarity = chineseSimilarity(
-            fixedText,
-            answer
-        );
+else if(answer === "棱锥体" && fixedText.includes("锥体")){
 
-    }
+    similarity = 1;
+
+}
+
+
+// ⭐ 原本单字规则
+else if(answer.length === 1 && cleanText.includes(answer)){
+
+    similarity = 1;
+
+}
+
+else{
+
+    similarity = chineseSimilarity(
+        fixedText,
+        answer
+    );
+
+}
 
     console.log(
         "中文相似度:",
