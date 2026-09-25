@@ -1238,7 +1238,7 @@ APP HEADER DESIGN 2
     line-height:1.8;
 
     color:#222;
-
+    
 }
 
 .detail-box *{
@@ -2555,8 +2555,16 @@ console.log(
     let similarity;
 
 
+// ⭐ 只要学生读出的内容包含题目，就算正确
+if(cleanText.includes(answer)){
+
+    similarity = 1;
+
+}
+
+
 // ⭐ 有什么 / 由什么 互相接受
-if(
+else if(
     (answer === "有什么" && fixedText === "由什么") ||
     (answer === "由什么" && fixedText === "有什么")
 ){
