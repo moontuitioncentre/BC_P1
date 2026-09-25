@@ -2520,12 +2520,15 @@ const specialFix = {
     "人锥体":"棱锥体",
     "能锥体":"棱锥体",
 
-    "指示牌":"指示",
+    "只是":"指示",
 
     "栗子":"例子",
     "粒子":"例子",
+    "荔枝":"例子",
 
-    "想像":"想象"
+    "想像":"想象",
+
+    "热漆":"日期"
 
 };
 
@@ -2703,13 +2706,6 @@ else{
             });
 
         }
-
-        if(!wrongWords.includes(currentWord)){
-
-            wrongWords.push(currentWord);
-
-        }
-
 
         document.body.className =
         "incorrect";
