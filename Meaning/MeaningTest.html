@@ -1244,12 +1244,10 @@ body.result-mode #result{
     <h1>Meaning Test</h1>
 
     <select id="studentGrade" onchange="loadStudents()">
+        <option value="">请选择年级</option>
         <option value="Year 1">Year 1</option>
         <option value="Year 2">Year 2</option>
         <option value="Year 3">Year 3</option>
-	<option value="Year 4">Year 4</option>
-	<option value="Year 5">Year 5</option>
-	<option value="Year 6">Year 6</option>
     </select>
 
     <br>
@@ -1780,10 +1778,8 @@ en.map((item,index)=>{
     return {
 
         bm:bm[index],
-
-        zh:zh[index],
-
-        en:item
+        en:en[index],
+        zh:zh[index]
 
     };
 
@@ -1793,64 +1789,20 @@ en.map((item,index)=>{
 const students = {
 
     "Year 1":[
-"Ryna",
-"Mikayla",
-"Eden",
-"Maxton",
-"Candy",
-"Shannon",
-"Jayden Liew"
-],
+        "Candy",
+        "Eden",
+        "David"
+    ],
 
-"Year 2":[
-"Laynarose",
-        "Ong Zhi Cong",
-        "Madihah",
-	"Alston"
-],
+    "Year 2":[
+        "John",
+        "Mary"
+    ],
 
-"Year 3":[
-"Gracelyn",
-        "Eyrina",
-        "Averlyn",
-	"Adrieal",
-	"Ryan Chin",
-	"Renee"
-],
-
-"Year 4":[
-"王紫萱",
-        "Hilary",
-        "Ernest",
-	"Joanna",
-	"Shannie",
-	"Gavriil",
-	"Abigail", 		
-"Amira",
-"Jayden Lai",
-"Manfred",
-"Alinnah",
-"Megan",
-"Medina",
-"Adison",
-"Raphael"
-],
-
-"Year 5":[
-"Jovana",
-        "Anson",
-        "Althea",
-	"Muqri",
-	"Richie",
-	"Corey",
-	"Keefe",
-"Quenice"
-],
-
-"Year 6":[
-"Rowell",
-"张嘉欣"
-]
+    "Year 3":[
+        "Alex",
+        "Tom"
+    ]
 
 };
 
@@ -1895,7 +1847,7 @@ let currentStudentName = "";
 let currentStudentGrade = "";
 
 let currentTestName =
-"Chinese_P1_Meaning_Set 1";
+"BC_P1_Meaning_Set 1";
 
 function getTestID(){
 
@@ -2552,9 +2504,9 @@ function createQuestions(sourceWords){
 
         return {
 
-            word:item.en,
+            word:item.zh,
 
-            answer:item.zh,
+            answer:item.en,
 
             options:options
 
@@ -2645,7 +2597,7 @@ function showQuestion(){
 
 
         btn.innerHTML = `
-            <div>${option.zh}</div>
+            <div>${option.en}</div>
             <small>${option.bm}</small>
         `;
 
@@ -2654,7 +2606,7 @@ function showQuestion(){
         function(){
 
             checkAnswer(
-                option.zh,
+                option.en,
                 btn
             );
 
