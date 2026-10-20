@@ -2041,7 +2041,7 @@ function watchBattle(){
                 // 超过 10 秒没有心跳
                 if(
                     now - player.lastActive
-                    > 1000
+                    > 10000
                 ){
                     return false;
                 }
@@ -2146,7 +2146,7 @@ function watchBattle(){
 
             renderBattle();
 
-        },1000);
+        },10000);
 
 }
 
@@ -2232,7 +2232,7 @@ async function startBattle(){
 
             }
 
-        },1000);
+        },10000);
 
 }
 
