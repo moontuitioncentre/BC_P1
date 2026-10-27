@@ -3557,6 +3557,39 @@ resultDiv.innerHTML =
 
    </div>
 
+   
+<!-- 会读的词汇 -->
+<div class="wrong-box" style="background:#d8ffd8;">
+
+    <div class="wrong-icon">
+        ✔️
+    </div>
+
+    <div class="wrong-title-cn">
+        会读的词汇
+    </div>
+
+    <div class="wrong-title-en">
+        Words Able to Read
+    </div>
+
+    <div class="wrong-title-bm">
+        Perkataan yang Dapat Dibaca
+    </div>
+
+    <div class="wrong-word" style="background:rgba(255,255,255,0.6); color:#2e7d32;">
+
+        ${
+            [...new Set(
+                testedWordsToday
+                    .filter(item => item.result === "correct")
+                    .map(item => item.word)
+            )].join(", ") || "-"
+        }
+
+    </div>
+
+</div>
 
 
    <!-- 不会读的词汇 -->
@@ -3749,65 +3782,50 @@ return text;
 // 选择范围
 // =======================
 
+
 function selectRange(){
 
+    let start = prompt("请输入开始词汇或序号");
 
+    // 点击 Cancel 时，不进行任何操作
+    if(start === null) return;
 
-let start =
-prompt(
-"请输入开始词汇"
-);
+    let end = prompt("请输入结束词汇或序号");
 
+    // 点击 Cancel 时，不进行任何操作
+    if(end === null) return;
 
+    start = start.trim();
+    end = end.trim();
 
-let end =
-prompt(
-"请输入结束词汇"
-);
+    // 支持输入词汇，也支持输入序号（从 1 开始）
+    let startIndex = /^\d+$/.test(start)
+        ? Number(start) - 1
+        : originalWords.indexOf(start);
 
+    let endIndex = /^\d+$/.test(end)
+        ? Number(end) - 1
+        : originalWords.indexOf(end);
 
+    // 检查输入是否有效
+    if(
+        startIndex < 0 ||
+        endIndex < 0 ||
+        startIndex >= originalWords.length ||
+        endIndex >= originalWords.length ||
+        startIndex > endIndex
+    ){
+        alert("词汇或序号无效，请重新输入");
+        return;
+    }
 
-let startIndex =
-originalWords.indexOf(start);
+    // 防止刷新导致进度消失
+    selectedRange = originalWords.slice(
+        startIndex,
+        endIndex + 1
+    );
 
-
-
-let endIndex =
-originalWords.indexOf(end);
-
-
-
-
-if(
-startIndex===-1 ||
-endIndex===-1 ||
-startIndex>endIndex
-){
-
-
-alert("词汇不存在");
-
-
-return;
-
-
-}
-
-// =======================
-// 防止刷新导致进度消失
-// =======================
-
-selectedRange =
-originalWords.slice(
-startIndex,
-endIndex+1
-);
-
-
-
-restart();
-
-
+    restart();
 
 }
 
@@ -4638,6 +4656,7 @@ restart();
 
 }
 
+/*
 // =======================
 // Refresh保护
 // =======================
@@ -4658,6 +4677,7 @@ e.returnValue="";
 }
 
 });
+*/
 
 function loadStudents(){
 
