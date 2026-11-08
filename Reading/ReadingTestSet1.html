@@ -1609,11 +1609,6 @@ font-weight:bold;
 
 <option value="">请选择年级</option>
         <option value="Year 1">Year 1</option>
-        <option value="Year 2">Year 2</option>
-        <option value="Year 3">Year 3</option>
-	<option value="Year 4">Year 4</option>
-	<option value="Year 5">Year 5</option>
-	<option value="Year 6">Year 6</option>
     </select>
 
 
@@ -1945,56 +1940,6 @@ const students = {
 "Candy",
 "Shannon",
 "Jayden Liew"
-],
-
-"Year 2":[
-"Laynarose",
-        "Ong Zhi Cong",
-        "Madihah",
-	"Alston"
-],
-
-"Year 3":[
-"Gracelyn",
-        "Eyrina",
-        "Averlyn",
-	"Adrieal",
-	"Ryan Chin",
-	"Renee"
-],
-
-"Year 4":[
-"王紫萱",
-        "Hilary",
-        "Ernest",
-	"Joanna",
-	"Shannie",
-	"Gavriil",
-	"Abigail", 		
-"Amira",
-"Jayden Lai",
-"Manfred",
-"Alinnah",
-"Megan",
-"Medina",
-"Adison",
-"Raphael"
-],
-
-"Year 5":[
-"Jovana",
-        "Anson",
-        "Althea",
-	"Muqri",
-	"Richie",
-	"Corey",
-	"Keefe",
-"Quenice"
-],
-
-"Year 6":[
-"Rowell",
-"张嘉欣"
 ]
 
 };
@@ -5119,6 +5064,38 @@ ${accuracy}%
 </div>
 
 
+<!-- 会读的词汇 -->
+<div class="wrong-box" style="background:#d8ffd8;">
+
+    <div class="wrong-icon">
+        ✔️
+    </div>
+
+    <div class="wrong-title-cn">
+        会读的词汇
+    </div>
+
+    <div class="wrong-title-en">
+        Words Able to Read
+    </div>
+
+    <div class="wrong-title-bm">
+        Perkataan yang Dapat Dibaca
+    </div>
+
+    <div class="wrong-word" style="background:rgba(255,255,255,0.6); color:#2e7d32;">
+
+        ${
+            [...new Set(
+                (data.testedWordsToday || [])
+                    .filter(item => item.result === "correct")
+                    .map(item => item.word)
+            )].join(", ") || "-"
+        }
+
+    </div>
+
+</div>
 
 
 <div class="wrong-box">
